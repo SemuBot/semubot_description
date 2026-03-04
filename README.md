@@ -46,7 +46,7 @@ source ~/<YOUR_WORKSPACE_NAME_HERE>/install/setup.bash
 Displays the robot's model in rviz, starts joint_state_publisher and robot_state_publisher
 ```bash
 #### Load SemuBot model
-ros2 launch semubot_description display_robot_model.launch.py
+ros2 launch semubot_description display_robot.launch.py
 ```
 
 ## **License**
