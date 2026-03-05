@@ -15,7 +15,7 @@ def generate_launch_description():
     rviz_path = os.path.join(
         pkg,
         'config',
-        'semubot_descrption.rviz')
+        'semubot_description.rviz')
 
     robot_description_content = Command(['xacro ', urdf_path])
 
