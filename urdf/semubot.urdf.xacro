@@ -179,13 +179,4 @@
   <!-- Head -->
   <xacro:head_macro parent="main_body" xyz="0 0 0.705" rpy="0 0 0"/>
 
-  <!-- Dummy root link -->
-  <link name="dummy_root"/>
-
-  <joint name="dummy_root_joint" type="fixed">
-    <parent link="dummy_root"/>
-    <child link="base_link"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint>
-
 </robot>
