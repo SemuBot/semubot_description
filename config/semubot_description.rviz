@@ -142,8 +142,6 @@ Visualization Manager:
           Value: true
         main_body:
           Value: true
-        odom:
-          Value: true
         omni_ball_1:
           Value: true
         omni_ball_2:
@@ -158,30 +156,29 @@ Visualization Manager:
       Show Axes: false
       Show Names: false
       Tree:
-        odom:
-          base_link:
-            main_body:
-              head_base:
-                head_scalp:
-                  {}
-                head_screen:
-                  {}
-              left_arm:
+        base_link:
+          main_body:
+            head_base:
+              head_scalp:
                 {}
-              right_arm:
+              head_screen:
                 {}
-            omni_ball_1:
+            left_arm:
               {}
-            omni_ball_2:
+            right_arm:
               {}
-            omni_ball_3:
-              {}
+          omni_ball_1:
+            {}
+          omni_ball_2:
+            {}
+          omni_ball_3:
+            {}
       Update Interval: 0
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: odom
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:

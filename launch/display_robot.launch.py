@@ -41,14 +41,6 @@ def generate_launch_description():
         ]
     )
 
-    #Static transform
-    static_tf = Node(
-        package='tf2_ros',
-        executable='static_transform_publisher',
-        name='static_transform_publisher',
-        arguments=['--frame-id', 'odom', '--child-frame-id', 'dummy_root']
-    )
-
     # RViz2
     rviz2 = Node(
         package='rviz2',
@@ -63,6 +55,5 @@ def generate_launch_description():
     return LaunchDescription([
         robot_state_publisher,
         joint_state_publisher,
-        static_tf,
         rviz2
     ])
