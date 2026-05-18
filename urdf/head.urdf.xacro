@@ -24,12 +24,10 @@
       </inertial>
     </link>
     
-    <joint name="head_joint" type="revolute">
+    <joint name="head_joint" type="fixed">
       <parent link="${parent}"/>
       <child link="head_base"/>
       <origin xyz="${xyz}" rpy="${rpy}"/>
-      <axis xyz="0 1 0"/>
-      <limit lower="-1.57" upper="1.57" effort="10" velocity="1.0"/>
     </joint>
 
     <!-- Head Scalp -->
