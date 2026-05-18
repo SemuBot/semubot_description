@@ -3,6 +3,11 @@
 
   <xacro:include filename="$(find semubot_description)/urdf/head.urdf.xacro"/>
 
+  <xacro:arg name="sim" default="false"/>
+  <xacro:if value="$(arg sim)">
+    <xacro:include filename="$(find semubot_description)/urdf/semubot.gazebo.xacro"/>
+  </xacro:if>
+
   <material name="white">
     <color rgba="1 1 1 1"/>
   </material>
@@ -177,7 +182,7 @@
   </joint>
 
   <!-- Head -->
-  <xacro:head_macro parent="main_body" xyz="0 0 0.705" rpy="0 0 0"/>
+  <xacro:head_macro parent="main_body" xyz="0 0 0.705" rpy="0 0 0" sim="$(arg sim)"/>
 
   <!-- ros2_control Hardware Interface -->
 <ros2_control name="SemubotHardwareSystem" type="system">
