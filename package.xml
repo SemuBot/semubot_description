@@ -15,6 +15,7 @@
 
   <!-- Runtime dependencies -->
   <depend>robot_state_publisher</depend>
+  <depend>realsense2_description</depend>
   <depend>joint_state_publisher</depend>
   <depend>xacro</depend>
   <depend>rviz2</depend>
