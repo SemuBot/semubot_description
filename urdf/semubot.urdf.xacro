@@ -32,8 +32,8 @@
     </collision>
     <inertial>
       <origin xyz="0 0 0.02" rpy="0 0 0"/>
-      <mass value="5.0"/>
-      <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      <mass value="15.0"/>
+      <inertia ixx="0.3" ixy="0.0" ixz="0.0" iyy="0.3" iyz="0.0" izz="0.3"/>
     </inertial>
   </link>
 
@@ -62,9 +62,9 @@
   </xacro:macro>
 
   <!-- Omni-balls -->
-  <xacro:omni_ball_macro name="omni_ball_1" xyz="0 0 0" rpy="0 0 0" scale="1" mass="0.1" ixx="0.001" iyy="0.001" izz="0.001"/>
-  <xacro:omni_ball_macro name="omni_ball_2" xyz="0 0 0" rpy="0 0 0" scale="1" mass="0.1" ixx="0.001" iyy="0.001" izz="0.001"/>
-  <xacro:omni_ball_macro name="omni_ball_3" xyz="0 0 0" rpy="0 0 0" scale="1" mass="0.1" ixx="0.001" iyy="0.001" izz="0.001"/>
+  <xacro:omni_ball_macro name="omni_ball_1" xyz="0 0 0" rpy="0 0 0" scale="1" mass="0.3" ixx="0.003" iyy="0.003" izz="0.003"/>
+  <xacro:omni_ball_macro name="omni_ball_2" xyz="0 0 0" rpy="0 0 0" scale="1" mass="0.3" ixx="0.003" iyy="0.003" izz="0.003"/>
+  <xacro:omni_ball_macro name="omni_ball_3" xyz="0 0 0" rpy="0 0 0" scale="1" mass="0.3" ixx="0.003" iyy="0.003" izz="0.003"/>
 
   <!-- Joints for Omni-balls -->
   <joint name="omni_ball_1_joint" type="continuous">
@@ -107,8 +107,8 @@
     </collision>
     <inertial>
       <origin xyz="0 0 0.05" rpy="0 0 0"/>
-      <mass value="3.0"/>
-      <inertia ixx="0.05" ixy="0.0" ixz="0.0" iyy="0.05" iyz="0.0" izz="0.05"/>
+      <mass value="9.0"/>
+      <inertia ixx="0.15" ixy="0.0" ixz="0.0" iyy="0.15" iyz="0.0" izz="0.15"/>
     </inertial>
   </link>
 
@@ -134,8 +134,8 @@
     </collision>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.5"/>
-      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      <mass value="1.5"/>
+      <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
     </inertial>
   </link>
 
@@ -163,8 +163,8 @@
     </collision>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0.5"/>
-      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      <mass value="1.5"/>
+      <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03"/>
     </inertial>
   </link>
 
