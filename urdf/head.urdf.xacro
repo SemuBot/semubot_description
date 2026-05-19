@@ -1,9 +1,11 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro"/>
+  <xacro:if value="$(arg camera)">
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435i.urdf.xacro"/>
+  </xacro:if>
 
-  <xacro:macro name="head_macro" params="parent xyz rpy sim:=false">
+  <xacro:macro name="head_macro" params="parent xyz rpy sim:=false camera:=false">
 
     <!-- Head Base -->
     <link name="head_base">
@@ -86,9 +88,11 @@
       <origin xyz="0 0 0" rpy="0 0 0"/>
     </joint>
 
-    <xacro:sensor_d435i parent="head_base" name="camera" use_nominal_extrinsics="${sim}">
-      <origin xyz="0.12 0 0.13" rpy="0 0 0"/>
-    </xacro:sensor_d435i>
+    <xacro:if value="${camera}">
+      <xacro:sensor_d435i parent="head_base" name="camera" use_nominal_extrinsics="${sim}">
+        <origin xyz="0.12 0 0.13" rpy="0 0 0"/>
+      </xacro:sensor_d435i>
+    </xacro:if>
 
   </xacro:macro>
 
