@@ -67,10 +67,7 @@ The URDF supports Gazebo via the `sim:=true` xacro argument, which loads:
 - Velocity control plugin (subscribes to `/cmd_vel`)
 - RGBD camera sensor 
 
-To spawn SemuBot in Gazebo, pass `sim:=true` when processing the xacro, for example:
-```bash
-xacro $(ros2 pkg prefix semubot_description)/share/semubot_description/urdf/semubot.urdf.xacro sim:=true > /tmp/semubot.urdf
-```
+To spawn SemuBot in Gazebo, pass `sim:=true` when processing the xacro.
 
 ## **RealSense D435i Camera**
 The RealSense D435i is optional and disabled by default. Enable it with `camera:=true`. In simulation it is modelled as an RGBD sensor on the `/camera` topic.
