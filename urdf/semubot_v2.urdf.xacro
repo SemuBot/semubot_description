@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="semubot_v2">
+
+  <!-- SemuBot V2: wheelbase only for now. Body, arms and head get added as they are built. -->
+
+  <xacro:arg name="sim" default="false"/>
+
+  <xacro:include filename="$(find semubot_description)/urdf/ros2_control.xacro"/>
+  <xacro:if value="$(arg sim)">
+    <xacro:include filename="$(find semubot_description)/urdf/semubot.gazebo.xacro"/>
+  </xacro:if>
+
+  <!-- Geometry measured from the Onshape export (base_frames v30) by
+       scripts/onshape_v2_meshes.py. Forward (+x) is the battery side. -->
+  <xacro:property name="wheel_radius" value="0.062"/>
+  <xacro:property name="base_radius" value="0.213"/>        <!-- wheel centre to robot centre -->
+  <xacro:property name="axle_offset" value="${radians(142.5)}"/> <!-- axle yaw relative to wheel direction -->
+  <xacro:property name="ball_mass" value="0.3"/>
+  <xacro:property name="frame_mass" value="9.1"/>          <!-- ~10 kg total -->
+
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://semubot_description/meshes/v2/base_frame.stl"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.14" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.3" length="0.2"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0.12" rpy="0 0 0"/>
+      <mass value="${frame_mass}"/>
+      <inertia ixx="${frame_mass * (3 * 0.3**2 + 0.2**2) / 12}" ixy="0.0" ixz="0.0"
+               iyy="${frame_mass * (3 * 0.3**2 + 0.2**2) / 12}" iyz="0.0"
+               izz="${frame_mass * 0.3**2 / 2}"/>
+    </inertial>
+  </link>
+
+  <!-- angle: wheel direction from the robot centre, 0 = forward, counter-clockwise -->
+  <xacro:macro name="omni_ball" params="n angle">
+    <link name="omni_ball_${n}">
+      <visual>
+        <geometry>
+          <mesh filename="package://semubot_description/meshes/v2/omni_ball.stl"/>
+        </geometry>
+        <material name="white"/>
+      </visual>
+      <collision>
+        <geometry>
+          <sphere radius="${wheel_radius}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="${ball_mass}"/>
+        <inertia ixx="${0.4 * ball_mass * wheel_radius**2}" ixy="0.0" ixz="0.0"
+                 iyy="${0.4 * ball_mass * wheel_radius**2}" iyz="0.0"
+                 izz="${0.4 * ball_mass * wheel_radius**2}"/>
+      </inertial>
+    </link>
+
+    <joint name="omni_ball_${n}_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="omni_ball_${n}"/>
+      <origin xyz="${base_radius * cos(angle)} ${base_radius * sin(angle)} ${wheel_radius}"
+              rpy="0 0 ${angle + axle_offset}"/>
+      <axis xyz="1 0 0"/>
+      <limit effort="50" velocity="10.0"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- Same numbering as V1: 1 front-left, 2 front-right, 3 rear -->
+  <xacro:omni_ball n="1" angle="${radians(60)}"/>
+  <xacro:omni_ball n="2" angle="${radians(-60)}"/>
+  <xacro:omni_ball n="3" angle="${pi}"/>
+
+  <!-- ros2_control Hardware Interface (real robot only; Gazebo uses its own plugins) -->
+  <xacro:unless value="$(arg sim)">
+    <xacro:semubot_ros2_control wheel_radius="${wheel_radius}" base_radius="${base_radius}"/>
+  </xacro:unless>
+
+</robot>

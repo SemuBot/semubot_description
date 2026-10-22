@@ -57,8 +57,19 @@ source ~/<YOUR_WORKSPACE_NAME_HERE>/install/setup.bash
 #### 2.1. Display robot in RViz
 Displays the robot model in RViz, starts `joint_state_publisher` and `robot_state_publisher`.
 ```bash
-ros2 launch semubot_description display_robot.launch.py
+ros2 launch semubot_description display_robot.launch.py            # V1
+ros2 launch semubot_description display_robot.launch.py version:=v2
 ```
+
+## **Robot versions**
+- **V1**: `urdf/semubot.urdf.xacro`, full robot.
+- **V2**: `urdf/semubot_v2.urdf.xacro`, wheelbase only for now. Its meshes in `meshes/v2/` are generated from the Onshape URDF export:
+  ```bash
+  python3 scripts/onshape_v2_meshes.py <export>/urdf/base_frames_vNN.urdf meshes/v2
+  ```
+  The script also prints the wheel geometry; copy it into the properties at the top of the xacro if it changed.
+
+Both versions use the same joint names (`omni_ball_1..3_joint`: front-left, front-right, rear) and the shared `ros2_control` block in `urdf/ros2_control.xacro`, which is left out when `sim:=true`.
 
 ## **Gazebo Simulation**
 The URDF supports Gazebo via the `sim:=true` xacro argument, which loads:
