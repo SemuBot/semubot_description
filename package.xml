@@ -15,7 +15,7 @@
 
   <!-- Runtime dependencies -->
   <depend>robot_state_publisher</depend>
-  <depend>realsense2_description</depend>
+  <!-- realsense2_description is optional: only needed with camera:=true, see README -->
   <depend>joint_state_publisher</depend>
   <depend>xacro</depend>
   <depend>rviz2</depend>

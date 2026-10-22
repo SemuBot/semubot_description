@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="omni_ball_ros2_control_joint" params="name">
+    <joint name="${name}">
+      <command_interface name="velocity">
+        <param name="min">-10.0</param>
+        <param name="max">10.0</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- Wheelbase hardware interface (semubot_ros_control), shared by all robot versions -->
+  <xacro:macro name="semubot_ros2_control" params="wheel_radius base_radius">
+    <ros2_control name="SemubotHardwareSystem" type="system">
+      <hardware>
+        <plugin>semubot_hardware_interface/SemubotHardwareInterface</plugin>
+        <param name="wheel_radius">${wheel_radius}</param>
+        <param name="base_radius">${base_radius}</param>
+      </hardware>
+      <xacro:omni_ball_ros2_control_joint name="omni_ball_1_joint"/>
+      <xacro:omni_ball_ros2_control_joint name="omni_ball_2_joint"/>
+      <xacro:omni_ball_ros2_control_joint name="omni_ball_3_joint"/>
+    </ros2_control>
+  </xacro:macro>
+
+</robot>
