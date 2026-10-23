@@ -62,6 +62,10 @@ ros2 launch semubot_description display_robot.launch.py version:=v2
 ```
 
 ## **Robot versions**
+| SemuBot V1 | V1 with camera (`camera:=true`) | SemuBot V2 wheelbase |
+|---|---|---|
+| ![SemuBot V1 in Gazebo](docs/semubot_v1.png) | ![SemuBot V1 with RealSense D435i in Gazebo](docs/semubot_v1_camera.png) | ![SemuBot V2 wheelbase in Gazebo](docs/semubot_v2_wheelbase.png) |
+
 - **V1**: `urdf/semubot.urdf.xacro`, full robot.
 - **V2**: `urdf/semubot_v2.urdf.xacro`, wheelbase only for now. Its meshes in `meshes/v2/` are generated from the Onshape URDF export:
   ```bash
